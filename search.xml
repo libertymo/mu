@@ -4,31 +4,6 @@
   
     
     <entry>
-      <title>职业规划</title>
-      <link href="/mu/2021/10/18/zhi-ye-gui-hua/"/>
-      <url>/mu/2021/10/18/zhi-ye-gui-hua/</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-      
-      <categories>
-          
-          <category> 人生 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 人生 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Hello World</title>
       <link href="/mu/2021/10/16/hello-world/"/>
       <url>/mu/2021/10/16/hello-world/</url>
@@ -38,18 +13,46 @@
       
       <categories>
           
-          <category> 测试 </category>
+          <category> 算法 </category>
+          
+          <category> java </category>
+          
+          <category> 集合类 </category>
+          
+          <category> 并发编程 </category>
+          
+          <category> JVM </category>
+          
+          <category> dubbo </category>
+          
+          <category> spring </category>
+          
+          <category> spring boot </category>
+          
+          <category> spring mvc </category>
+          
+          <category> mysql </category>
+          
+          <category> redis </category>
+          
+          <category> 消息队列 </category>
+          
+          <category> 分布式 </category>
+          
+          <category> 网络 </category>
+          
+          <category> netty </category>
+          
+          <category> 设计模式 </category>
+          
+          <category> es </category>
+          
+          <category> hbase </category>
+          
+          <category> 投资 </category>
           
       </categories>
       
-      
-        <tags>
-            
-            <tag> 测试 </tag>
-            
-            <tag> 第一 </tag>
-            
-        </tags>
       
     </entry>
     
