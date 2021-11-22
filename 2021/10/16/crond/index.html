@@ -381,7 +381,7 @@
                 <h2 id="crond"><a href="#crond" class="headerlink" title="crond"></a>crond</h2><h3 id="crond简介"><a href="#crond简介" class="headerlink" title="crond简介"></a>crond简介</h3><p>crond可以在linux下固定时间周期执行的命令。使用方便。最小粒度为分钟。</p>
 <h3 id="crond使用"><a href="#crond使用" class="headerlink" title="crond使用"></a>crond使用</h3><h4 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h4><p>一般是自带的，无需安装。</p>
 <p>查看是否有crond服务：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> launchctl list <span class="token operator">|</span> <span class="token function">grep</span> <span class="token function">cron</span> <span class="token comment">#mac的cron是基于launchctl实现的</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-none"><code class="language-none">sudo launchctl list | grep cron #mac的cron是基于launchctl实现的<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h3 id="2-使用"><a href="#2-使用" class="headerlink" title="2.使用"></a>2.使用</h3><h4 id="1-命令格式"><a href="#1-命令格式" class="headerlink" title="1.命令格式"></a>1.命令格式</h4><pre class="line-numbers language-none"><code class="language-none">crontab [-u user] file #不指定用户则为当前用户<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
