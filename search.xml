@@ -4,6 +4,57 @@
   
     
     <entry>
+      <title>awk命令</title>
+      <link href="/mu/2021/11/22/awk/"/>
+      <url>/mu/2021/11/22/awk/</url>
+      
+        <content type="html"><![CDATA[<h2 id="awk"><a href="#awk" class="headerlink" title="awk"></a>awk</h2><h3 id="awk简介"><a href="#awk简介" class="headerlink" title="awk简介"></a>awk简介</h3><p>awk是linux文本处理利器。</p><h3 id="awk使用"><a href="#awk使用" class="headerlink" title="awk使用"></a>awk使用</h3><pre class="line-numbers language-none"><code class="language-none">awk '{pattern + action}' {filenames}<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>pattern可以很复杂，不过能满足一般文本处理就好了:</p><pre class="line-numbers language-none"><code class="language-none">awk '/匹配的文本/{print $8 $9}' xx.log<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> linux </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>find命令</title>
+      <link href="/mu/2021/11/22/find/"/>
+      <url>/mu/2021/11/22/find/</url>
+      
+        <content type="html"><![CDATA[<h2 id="find"><a href="#find" class="headerlink" title="find"></a>find</h2><h3 id="find简介"><a href="#find简介" class="headerlink" title="find简介"></a>find简介</h3><p>文件查找工具</p><h4 id="find使用"><a href="#find使用" class="headerlink" title="find使用"></a>find使用</h4><pre class="line-numbers language-none"><code class="language-none">find 文件路径 参数<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>例子:</p><pre class="line-numbers language-none"><code class="language-none">find ~ -name 'test'<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>mac系统有个权限问题:</p><pre class="line-numbers language-none"><code class="language-none">find: /Users/xx/.Trash: Operation not permitted<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>mac的安全机制，需要重启电脑，按下 Command + R进入恢复模式，关掉安全机制。但是正常来说还是别这么干，不划算。</p><pre class="line-numbers language-none"><code class="language-none">csrutil disable<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h3 id="locate命令"><a href="#locate命令" class="headerlink" title="locate命令"></a>locate命令</h3><p>locate 与 find 不同: find 是去硬盘找，locate需要建立一个数据库/var/lib/slocate/slocate.db。</p><pre class="line-numbers language-none"><code class="language-none">locate test #查找test开头的文件locate /Users/test  #/Users下查找test开头的文件<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> linux </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/mu/2021/11/22/ddd-0/"/>
+      <url>/mu/2021/11/22/ddd-0/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>mac定时任务crond和launchctl</title>
       <link href="/mu/2021/11/22/crond/"/>
       <url>/mu/2021/11/22/crond/</url>
