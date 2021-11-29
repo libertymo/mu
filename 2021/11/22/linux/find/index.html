@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="awk命令, 牧">
+    <meta name="keywords" content="find命令, 牧">
     <meta name="description" content="牧白">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>awk命令 | 牧</title>
+    <title>find命令 | 牧</title>
     <link rel="icon" type="image/png" href="/mu/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/mu/libs/awesome/css/all.css">
@@ -204,12 +204,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/mu/medias/featureimages/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/mu/medias/featureimages/8.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">awk命令</h1>
+                    <h1 class="description center-align post-title">find命令</h1>
                 </div>
             </div>
         </div>
@@ -370,10 +370,18 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="awk"><a href="#awk" class="headerlink" title="awk"></a>awk</h2><h3 id="awk简介"><a href="#awk简介" class="headerlink" title="awk简介"></a>awk简介</h3><p>awk是linux文本处理利器。</p>
-<h3 id="awk使用"><a href="#awk使用" class="headerlink" title="awk使用"></a>awk使用</h3><pre class="line-numbers language-none"><code class="language-none">awk '{pattern + action}' {filenames}<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>pattern可以很复杂，不过能满足一般文本处理就好了:</p>
-<pre class="line-numbers language-none"><code class="language-none">awk '/匹配的文本/{print $8 $9}' xx.log<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+                <h2 id="find"><a href="#find" class="headerlink" title="find"></a>find</h2><h3 id="find简介"><a href="#find简介" class="headerlink" title="find简介"></a>find简介</h3><p>文件查找工具</p>
+<h4 id="find使用"><a href="#find使用" class="headerlink" title="find使用"></a>find使用</h4><pre class="line-numbers language-none"><code class="language-none">find 文件路径 参数<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>例子:</p>
+<pre class="line-numbers language-none"><code class="language-none">find ~ -name 'test'<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>mac系统有个权限问题:</p>
+<pre class="line-numbers language-none"><code class="language-none">find: /Users/xx/.Trash: Operation not permitted<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>mac的安全机制，需要重启电脑，按下 Command + R进入恢复模式，关掉安全机制。但是正常来说还是别这么干，不划算。</p>
+<pre class="line-numbers language-none"><code class="language-none">csrutil disable<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="locate命令"><a href="#locate命令" class="headerlink" title="locate命令"></a>locate命令</h3><p>locate 与 find 不同: find 是去硬盘找，locate需要建立一个数据库/var/lib/slocate/slocate.db。</p>
+<pre class="line-numbers language-none"><code class="language-none">locate test #查找test开头的文件
+locate /Users/test  #/Users下查找test开头的文件<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
                 
             </div>
             <hr/>
@@ -430,12 +438,11 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/mu/2021/11/22/awk/">
+                <a href="/mu/2021/11/22/linux/awk/">
                     <div class="card-image">
                         
                         
@@ -451,9 +458,9 @@
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-22
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-11-22
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -466,7 +473,6 @@
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
@@ -477,13 +483,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/mu/2021/11/22/find/">
+                <a href="/mu/2021/11/22/linux/crond/">
                     <div class="card-image">
                         
                         
-                        <img src="/mu/medias/featureimages/8.jpg" class="responsive-img" alt="find命令">
+                        <img src="/mu/medias/featureimages/15.jpg" class="responsive-img" alt="mac定时任务crond和launchctl">
                         
-                        <span class="card-title">find命令</span>
+                        <span class="card-title">mac定时任务crond和launchctl</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -504,9 +510,25 @@
                                     linux
                                 </a>
                             
+                            <a href="/mu/categories/linux/mac/" class="post-category">
+                                    mac
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/mu/tags/crond/">
+                        <span class="chip bg-color">crond</span>
+                    </a>
+                    
+                    <a href="/mu/tags/launchctl/">
+                        <span class="chip bg-color">launchctl</span>
+                    </a>
+                    
                 </div>
                 
             </div>

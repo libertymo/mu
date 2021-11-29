@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="牧">
+    <meta name="keywords" content="awk命令, 牧">
     <meta name="description" content="牧白">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>牧</title>
+    <title>awk命令 | 牧</title>
     <link rel="icon" type="image/png" href="/mu/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/mu/libs/awesome/css/all.css">
@@ -204,12 +204,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/mu/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/mu/medias/featureimages/4.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title"></h1>
+                    <h1 class="description center-align post-title">awk命令</h1>
                 </div>
             </div>
         </div>
@@ -330,6 +330,15 @@
                 </div>
                 <div class="col s5 right-align">
                     
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/mu/categories/linux/" class="post-category">
+                                linux
+                            </a>
+                        
+                    </div>
+                    
                 </div>
             </div>
 
@@ -361,7 +370,10 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h2 id="awk"><a href="#awk" class="headerlink" title="awk"></a>awk</h2><h3 id="awk简介"><a href="#awk简介" class="headerlink" title="awk简介"></a>awk简介</h3><p>awk是linux文本处理利器。</p>
+<h3 id="awk使用"><a href="#awk使用" class="headerlink" title="awk使用"></a>awk使用</h3><pre class="line-numbers language-none"><code class="language-none">awk '{pattern + action}' {filenames}<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>pattern可以很复杂，不过能满足一般文本处理就好了:</p>
+<pre class="line-numbers language-none"><code class="language-none">awk '/匹配的文本/{print $8 $9}' xx.log<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
                 
             </div>
             <hr/>
@@ -422,13 +434,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/mu/2021/11/22/find/">
+                <a href="/mu/2021/11/29/build-tool/ant/">
                     <div class="card-image">
                         
                         
-                        <img src="/mu/medias/featureimages/8.jpg" class="responsive-img" alt="find命令">
+                        <img src="/mu/medias/featureimages/8.jpg" class="responsive-img" alt="ant使用">
                         
-                        <span class="card-title">find命令</span>
+                        <span class="card-title">ant使用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -439,14 +451,14 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-11-22
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-11-29
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/mu/categories/linux/" class="post-category">
-                                    linux
+                            <a href="/mu/categories/ant/" class="post-category">
+                                    ant
                                 </a>
                             
                             
@@ -463,13 +475,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/mu/2021/11/22/crond/">
+                <a href="/mu/2021/11/22/linux/find/">
                     <div class="card-image">
                         
                         
-                        <img src="/mu/medias/featureimages/15.jpg" class="responsive-img" alt="mac定时任务crond和launchctl">
+                        <img src="/mu/medias/featureimages/8.jpg" class="responsive-img" alt="find命令">
                         
-                        <span class="card-title">mac定时任务crond和launchctl</span>
+                        <span class="card-title">find命令</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -490,25 +502,9 @@
                                     linux
                                 </a>
                             
-                            <a href="/mu/categories/linux/mac/" class="post-category">
-                                    mac
-                                </a>
-                            
                             
                         </span>
                     </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/mu/tags/crond/">
-                        <span class="chip bg-color">crond</span>
-                    </a>
-                    
-                    <a href="/mu/tags/launchctl/">
-                        <span class="chip bg-color">launchctl</span>
-                    </a>
-                    
                 </div>
                 
             </div>

@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="find命令, 牧">
+    <meta name="keywords" content="ant使用, 牧">
     <meta name="description" content="牧白">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>find命令 | 牧</title>
+    <title>ant使用 | 牧</title>
     <link rel="icon" type="image/png" href="/mu/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/mu/libs/awesome/css/all.css">
@@ -209,7 +209,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">find命令</h1>
+                    <h1 class="description center-align post-title">ant使用</h1>
                 </div>
             </div>
         </div>
@@ -333,8 +333,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/mu/categories/linux/" class="post-category">
-                                linux
+                            <a href="/mu/categories/ant/" class="post-category">
+                                ant
                             </a>
                         
                     </div>
@@ -346,7 +346,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-11-22
+                    2021-11-29
                 </div>
                 
 
@@ -370,18 +370,63 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="find"><a href="#find" class="headerlink" title="find"></a>find</h2><h3 id="find简介"><a href="#find简介" class="headerlink" title="find简介"></a>find简介</h3><p>文件查找工具</p>
-<h4 id="find使用"><a href="#find使用" class="headerlink" title="find使用"></a>find使用</h4><pre class="line-numbers language-none"><code class="language-none">find 文件路径 参数<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>例子:</p>
-<pre class="line-numbers language-none"><code class="language-none">find ~ -name 'test'<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>mac系统有个权限问题:</p>
-<pre class="line-numbers language-none"><code class="language-none">find: /Users/xx/.Trash: Operation not permitted<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>mac的安全机制，需要重启电脑，按下 Command + R进入恢复模式，关掉安全机制。但是正常来说还是别这么干，不划算。</p>
-<pre class="line-numbers language-none"><code class="language-none">csrutil disable<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="locate命令"><a href="#locate命令" class="headerlink" title="locate命令"></a>locate命令</h3><p>locate 与 find 不同: find 是去硬盘找，locate需要建立一个数据库/var/lib/slocate/slocate.db。</p>
-<pre class="line-numbers language-none"><code class="language-none">locate test #查找test开头的文件
-locate /Users/test  #/Users下查找test开头的文件<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+                <h2 id="ant使用"><a href="#ant使用" class="headerlink" title="ant使用"></a>ant使用</h2><p>1.在项目根目录创建build.xml</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
+&lt;!-- project name是名字,default是默认的行为,basedir是项目根目录(.代表当前目录) --&gt;
+&lt;project name="ant_test" default="run" basedir="."&gt;
+    &lt;!-- 自定义的几个目录属性，lib是三方包目录，src是源目录，desc是目标目录，ant_test_jar是打包名 --&gt;
+    &lt;property name="lib" value="lib"/&gt;
+    &lt;property name="src" value="src"/&gt;
+    &lt;property name="dest" value="classes"/&gt;
+    &lt;property name="ant_test_jar" value="ant_test.jar"/&gt;
+    &lt;!-- 定义三方包路径标识符，有点类似File的作用 --&gt;
+    &lt;path id="libPath"&gt;
+        &lt;fileset dir="${lib}"&gt;
+            &lt;include name="*.jar" /&gt;
+        &lt;/fileset&gt;
+    &lt;/path&gt;
+    &lt;!-- 给path属性定义一个property --&gt;
+    &lt;property name="classpath" refid="libPath"/&gt;
 
+    &lt;!-- 自定义init行为 --&gt;
+    &lt;target name="init"&gt;
+        &lt;!-- 创建classes目录 --&gt;
+        &lt;mkdir dir="${dest}"/&gt;
+    &lt;/target&gt;
+    &lt;!-- 自定义编译行为--&gt;
+    &lt;target name="compile" depends="init"&gt;
+        &lt;!-- 编译src目录源代码，目标目录是classes，引用lib中三方jar包 --&gt;
+        &lt;javac srcdir="${src}" destdir="${dest}" classpath="${classpath}"/&gt;
+    &lt;/target&gt;
+    &lt;!-- 自定义打包行为--&gt;
+    &lt;target name="build" depends="compile"&gt;
+        &lt;!-- 包名ant_test.jar，根目录classes --&gt;
+        &lt;jar jarfile="${ant_test_jar}" basedir="${dest}"&gt;
+            &lt;!-- 排除测试文件 --&gt;
+            &lt;exclude name="**/*Test.*"/&gt;
+            &lt;!-- 如果包可执行，需配置manifest的Main-Class --&gt;
+            &lt;manifest&gt;
+                &lt;attribute name="Main-Class" value="org.example.App"/&gt;
+            &lt;/manifest&gt;
+        &lt;/jar&gt;
+    &lt;/target&gt;
+    &lt;!-- 自定义执行工程行为--&gt;
+    &lt;target name="run" depends="build"&gt;
+        &lt;java classname="org.example.App" classpath="${ant_test_jar}"/&gt;
+    &lt;/target&gt;
+    &lt;!-- 自定义清除,删除目录和文件--&gt;
+    &lt;target name="clean" depends="run"&gt;
+        &lt;delete dir="${dest}"/&gt;
+        &lt;delete file="${ant_test_jar}"/&gt;
+    &lt;/target&gt;
+    &lt;target name="rerun" depends="clean,run"&gt;
+        &lt;ant target="clean" /&gt;
+        &lt;ant target="run" /&gt;
+    &lt;/target&gt;
+&lt;/project&gt;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>生成可执行jar包,执行</p>
+<pre class="line-numbers language-none"><code class="language-none">java -jar ant_test.jar<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
                 
             </div>
             <hr/>
@@ -438,11 +483,54 @@ locate /Users/test  #/Users下查找test开头的文件<span aria-hidden="true" 
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/mu/2021/11/22/awk/">
+                <a href="/mu/2021/11/29/build-tool/ant/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/mu/medias/featureimages/8.jpg" class="responsive-img" alt="ant使用">
+                        
+                        <span class="card-title">ant使用</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-29
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/mu/categories/ant/" class="post-category">
+                                    ant
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/mu/2021/11/22/linux/awk/">
                     <div class="card-image">
                         
                         
@@ -458,9 +546,9 @@ locate /Users/test  #/Users下查找test开头的文件<span aria-hidden="true" 
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-11-22
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-22
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -469,43 +557,6 @@ locate /Users/test  #/Users下查找test开头的文件<span aria-hidden="true" 
                                     linux
                                 </a>
                             
-                            
-                        </span>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/mu/2021/11/22/ddd-0/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/mu/medias/featureimages/0.jpg" class="responsive-img" alt="">
-                        
-                        <span class="card-title"></span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-22
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            momu
                             
                         </span>
                     </div>
