@@ -11,7 +11,7 @@
 
     <title>
         
-        awk命令 - undefined
+        ant使用 - undefined
         
     </title>
 
@@ -95,7 +95,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#awk"><span class="toc-text">awk</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#awk%E7%AE%80%E4%BB%8B"><span class="toc-text">awk简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#awk%E4%BD%BF%E7%94%A8"><span class="toc-text">awk使用</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ant%E4%BD%BF%E7%94%A8"><span class="toc-text">ant使用</span></a></li></ol>
 </div>
     
 </div>
@@ -126,11 +126,11 @@
 
 <div class="post-container">
     <div class="post-title">
-        awk命令
+        ant使用
     </div>
 
     <div class="post-meta">
-        <span class="attr">Post：<span>2021-11-22 18:00:00</span></span>
+        <span class="attr">Post：<span>2021-11-29 21:00:00</span></span>
         
         </span>
         <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
@@ -138,10 +138,79 @@
 </span>
     </div>
     <div class="post-content ">
-        <h2 id="awk"><a href="#awk" class="headerlink" title="awk"></a>awk</h2><h3 id="awk简介"><a href="#awk简介" class="headerlink" title="awk简介"></a>awk简介</h3><p>awk是linux文本处理利器。</p>
-<h3 id="awk使用"><a href="#awk使用" class="headerlink" title="awk使用"></a>awk使用</h3><pre class="line-numbers language-none"><code class="language-none">awk '{pattern + action}' {filenames}<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>pattern可以很复杂，不过能满足一般文本处理就好了:</p>
-<pre class="line-numbers language-none"><code class="language-none">awk '/匹配的文本/{print $8 $9}' xx.log<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+        <h2 id="ant使用"><a href="#ant使用" class="headerlink" title="ant使用"></a>ant使用</h2><ul>
+<li><p>1.下载ant</p>
+<ul>
+<li>官网下载:<a target="_blank" rel="noopener" href="http://ant.apache.org/">http://ant.apache.org/</a></li>
+<li>一般放在<code>/usr/local</code>目录</li>
+</ul>
+</li>
+<li><p>2.配置ant环境变量</p>
+<ul>
+<li>在<code>~/.bash_profile</code>或者<code>~/.bashrc</code>配置环境变量</li>
+</ul>
+  <pre class="line-numbers language-none"><code class="language-none">#ant
+export ANT_HOME=/usr/local/apache-ant-1.10.12
+export PATH=${PATH}:${ANT_HOME}/bin<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+<li><p>3.创建java工程，在项目根目录创建build.xml</p>
+  <pre class="line-numbers language-none"><code class="language-none">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
+&lt;!-- project name是名字,default是默认的行为,basedir是项目根目录(.代表当前目录) --&gt;
+&lt;project name="ant_test" default="run" basedir="."&gt;
+    &lt;!-- 自定义的几个目录属性，lib是三方包目录，src是源目录，desc是目标目录，ant_test_jar是打包名 --&gt;
+    &lt;property name="lib" value="lib"/&gt;
+    &lt;property name="src" value="src"/&gt;
+    &lt;property name="dest" value="classes"/&gt;
+    &lt;property name="ant_test_jar" value="ant_test.jar"/&gt;
+    &lt;!-- 定义三方包路径标识符，有点类似File的作用 --&gt;
+    &lt;path id="libPath"&gt;
+        &lt;fileset dir="${lib}"&gt;
+            &lt;include name="*.jar" /&gt;
+        &lt;/fileset&gt;
+    &lt;/path&gt;
+    &lt;!-- 给path属性定义一个property --&gt;
+    &lt;property name="classpath" refid="libPath"/&gt;
+
+    &lt;!-- 自定义init行为 --&gt;
+    &lt;target name="init"&gt;
+        &lt;!-- 创建classes目录 --&gt;
+        &lt;mkdir dir="${dest}"/&gt;
+    &lt;/target&gt;
+    &lt;!-- 自定义编译行为--&gt;
+    &lt;target name="compile" depends="init"&gt;
+        &lt;!-- 编译src目录源代码，目标目录是classes，引用lib中三方jar包 --&gt;
+        &lt;javac srcdir="${src}" destdir="${dest}" classpath="${classpath}"/&gt;
+    &lt;/target&gt;
+    &lt;!-- 自定义打包行为--&gt;
+    &lt;target name="build" depends="compile"&gt;
+        &lt;!-- 包名ant_test.jar，根目录classes --&gt;
+        &lt;jar jarfile="${ant_test_jar}" basedir="${dest}"&gt;
+            &lt;!-- 排除测试文件 --&gt;
+            &lt;exclude name="**/*Test.*"/&gt;
+            &lt;!-- 如果包可执行，需配置manifest的Main-Class --&gt;
+            &lt;manifest&gt;
+                &lt;attribute name="Main-Class" value="org.example.App"/&gt;
+            &lt;/manifest&gt;
+        &lt;/jar&gt;
+    &lt;/target&gt;
+    &lt;!-- 自定义执行工程行为--&gt;
+    &lt;target name="run" depends="build"&gt;
+        &lt;java classname="org.example.App" classpath="${ant_test_jar}"/&gt;
+    &lt;/target&gt;
+    &lt;!-- 自定义清除,删除目录和文件--&gt;
+    &lt;target name="clean" depends="run"&gt;
+        &lt;delete dir="${dest}"/&gt;
+        &lt;delete file="${ant_test_jar}"/&gt;
+    &lt;/target&gt;
+    &lt;target name="rerun" depends="clean,run"&gt;
+        &lt;ant target="clean" /&gt;
+        &lt;ant target="run" /&gt;
+    &lt;/target&gt;
+&lt;/project&gt;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p>生成可执行jar包,执行</p>
+  <pre class="line-numbers language-none"><code class="language-none">java -jar ant_test.jar<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+</ul>
+
         
         <br />
         <div id="comment-container">
