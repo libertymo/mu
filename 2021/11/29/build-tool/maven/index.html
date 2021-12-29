@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="牧白">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/mu/img/favicon.ico">
+
+    <title>
+        
+        maven插件使用 - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/mu/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/mu/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 牧 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/mu/" />
+        </div>
+        <div class="name">
+            <i>momu</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/mu/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li >
+                <a href="/mu/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li >
+                <a href="/mu/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li >
+                <a href="/mu/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#maven%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8"><span class="toc-text">maven插件使用</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 牧 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        maven插件使用
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2021-11-29 21:00:00</span></span>
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h2 id="maven插件使用"><a href="#maven插件使用" class="headerlink" title="maven插件使用"></a>maven插件使用</h2><p>###1.整体配置</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+&lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;
+  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+
+  &lt;groupId&gt;org.example&lt;/groupId&gt;
+  &lt;artifactId&gt;maven_test&lt;/artifactId&gt;
+  &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+
+  &lt;name&gt;maven_test&lt;/name&gt;
+
+  &lt;properties&gt;
+    &lt;!-- pluginManagement全局配置 --&gt;
+    &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+    &lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;
+    &lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;
+  &lt;/properties&gt;
+
+  &lt;dependencies&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;junit&lt;/groupId&gt;
+      &lt;artifactId&gt;junit&lt;/artifactId&gt;
+      &lt;version&gt;4.11&lt;/version&gt;
+      &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.apache.commons&lt;/groupId&gt;
+      &lt;artifactId&gt;commons-collections4&lt;/artifactId&gt;
+      &lt;version&gt;4.2&lt;/version&gt;
+    &lt;/dependency&gt;
+  &lt;/dependencies&gt;
+  
+  &lt;build&gt;
+    &lt;pluginManagement&gt;
+      &lt;plugins&gt;
+        &lt;!-- 清除编译文件 --&gt;
+        &lt;plugin&gt;
+          &lt;artifactId&gt;maven-clean-plugin&lt;/artifactId&gt;
+          &lt;version&gt;3.1.0&lt;/version&gt;
+        &lt;/plugin&gt;
+        &lt;!-- maven中默认只能读取resources文件夹下的资源，maven-resources-plugin可指定路径下文件，和resources、testResources配合使用--&gt;
+        &lt;plugin&gt;
+          &lt;artifactId&gt;maven-resources-plugin&lt;/artifactId&gt;
+          &lt;version&gt;3.0.2&lt;/version&gt;
+        &lt;/plugin&gt;
+        &lt;!-- 编译插件 --&gt;
+        &lt;plugin&gt;
+          &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+          &lt;version&gt;3.8.0&lt;/version&gt;
+          &lt;configuration&gt;
+            &lt;skip&gt;true&lt;/skip&gt;
+          &lt;/configuration&gt;
+        &lt;/plugin&gt;
+        &lt;!-- mvn test --&gt;
+        &lt;plugin&gt;
+          &lt;artifactId&gt;maven-surefire-plugin&lt;/artifactId&gt;
+          &lt;version&gt;2.22.1&lt;/version&gt;
+        &lt;/plugin&gt;
+        &lt;!-- mvn package --&gt;
+        &lt;plugin&gt;
+          &lt;artifactId&gt;maven-jar-plugin&lt;/artifactId&gt;
+          &lt;version&gt;3.0.2&lt;/version&gt;
+          &lt;configuration&gt;
+            &lt;archive&gt;
+              &lt;manifest&gt;
+                &lt;addClasspath&gt;true&lt;/addClasspath&gt;
+                &lt;!-- 指定三方包依赖路径 --&gt;
+                &lt;classpathPrefix&gt;lib/&lt;/classpathPrefix&gt;
+                &lt;!-- 可执行文件要在manifest指定主类--&gt;
+                &lt;mainClass&gt;org.example.App&lt;/mainClass&gt;
+              &lt;/manifest&gt;
+            &lt;/archive&gt;
+            &lt;excludes&gt;
+              &lt;exclude&gt;**/bin/*&lt;/exclude&gt;
+            &lt;/excludes&gt;
+          &lt;/configuration&gt;
+        &lt;/plugin&gt;
+        
+        &lt;plugin&gt;
+          &lt;artifactId&gt;maven-assembly-plugin&lt;/artifactId&gt;
+          &lt;version&gt;3.0.0&lt;/version&gt;
+        &lt;/plugin&gt;
+        
+        &lt;!-- 打包到本地仓库 --&gt;
+        &lt;plugin&gt;
+          &lt;artifactId&gt;maven-install-plugin&lt;/artifactId&gt;
+          &lt;version&gt;2.5.2&lt;/version&gt;
+        &lt;/plugin&gt;
+        &lt;!-- 打包到远程仓库 --&gt;
+        &lt;plugin&gt;
+          &lt;artifactId&gt;maven-deploy-plugin&lt;/artifactId&gt;
+          &lt;version&gt;2.8.2&lt;/version&gt;
+        &lt;/plugin&gt;
+      &lt;/plugins&gt;
+    &lt;/pluginManagement&gt;
+   &lt;!-- maven-assembly-plugin在pluginManagement不生效 --&gt;
+    &lt;plugins&gt;
+      &lt;plugin&gt;
+        &lt;artifactId&gt;maven-assembly-plugin&lt;/artifactId&gt;
+        &lt;configuration&gt;
+          &lt;descriptors&gt;
+            &lt;descriptor&gt;assembly.xml&lt;/descriptor&gt;
+          &lt;/descriptors&gt;
+        &lt;/configuration&gt;
+        &lt;executions&gt;
+          &lt;execution&gt;
+            &lt;id&gt;make-assembly&lt;/id&gt;
+            &lt;!-- 和mvn package绑定，即执行package命令会执行assembly --&gt;
+            &lt;phase&gt;package&lt;/phase&gt;
+            &lt;goals&gt;
+              &lt;goal&gt;single&lt;/goal&gt;
+            &lt;/goals&gt;
+          &lt;/execution&gt;
+        &lt;/executions&gt;
+      &lt;/plugin&gt;
+    &lt;/plugins&gt;
+    
+    &lt;!-- 如指定路径，则不使用默认路径 --&gt;
+&lt;!--    &lt;resources&gt;--&gt;
+&lt;!--      &lt;resource&gt;--&gt;
+&lt;!--        &lt;directory&gt;src/main/resources&lt;/directory&gt;--&gt;
+&lt;!--        &lt;includes&gt;--&gt;
+&lt;!--          &lt;include&gt;**/*.properties&lt;/include&gt;--&gt;
+&lt;!--        &lt;/includes&gt;--&gt;
+&lt;!--        &lt;excludes&gt;--&gt;
+&lt;!--          &lt;exclude&gt;**/*.gradle&lt;/exclude&gt;--&gt;
+&lt;!--        &lt;/excludes&gt;--&gt;
+&lt;!--      &lt;/resource&gt;--&gt;
+&lt;!--    &lt;/resources&gt;--&gt;
+&lt;!--    &lt;testResources&gt;--&gt;
+&lt;!--      &lt;testResource&gt;--&gt;
+&lt;!--        &lt;directory&gt;aaa&lt;/directory&gt;--&gt;
+&lt;!--      &lt;/testResource&gt;--&gt;
+&lt;!--    &lt;/testResources&gt;--&gt;
+  &lt;/build&gt;
+&lt;/project&gt;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>###2.    maven-assembly-plugin配置文件assembly.xml</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;?xml version='1.0' encoding='UTF-8'?&gt;
+&lt;assembly xmlns="http://maven.apache.org/ASSEMBLY/2.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.1.0 http://maven.apache.org/xsd/assembly-2.1.0.xsd"&gt;
+    &lt;id&gt;demo&lt;/id&gt;
+    &lt;formats&gt;
+    	&lt;!-- 打包成tar.gz格式 --&gt;
+        &lt;format&gt;tar.gz&lt;/format&gt;
+    &lt;/formats&gt;
+    &lt;includeBaseDirectory&gt;false&lt;/includeBaseDirectory&gt;
+    &lt;fileSets&gt;
+        &lt;fileSet&gt;
+        		&lt;!-- 打包配置文件到bin目录 --&gt;
+            &lt;directory&gt;target/classes/bin&lt;/directory&gt;
+            &lt;outputDirectory&gt;bin&lt;/outputDirectory&gt;
+            &lt;includes&gt;
+                &lt;include&gt;**/*&lt;/include&gt;
+            &lt;/includes&gt;
+            &lt;fileMode&gt;0755&lt;/fileMode&gt;
+        &lt;/fileSet&gt;
+        &lt;fileSet&gt;
+        	  &lt;!-- 打包可执行jar到包根目录 --&gt;
+            &lt;directory&gt;target&lt;/directory&gt;
+            &lt;outputDirectory&gt;/&lt;/outputDirectory&gt;
+            &lt;includes&gt;
+                &lt;include&gt;**/*.jar&lt;/include&gt;
+            &lt;/includes&gt;
+            &lt;fileMode&gt;0755&lt;/fileMode&gt;
+        &lt;/fileSet&gt;
+
+    &lt;/fileSets&gt;
+    &lt;!-- 依赖的三方包处理，打到lib包--&gt;
+    &lt;dependencySets&gt;
+        &lt;dependencySet&gt;
+            &lt;useProjectArtifact&gt;true&lt;/useProjectArtifact&gt;
+            &lt;outputDirectory&gt;lib&lt;/outputDirectory&gt;
+            &lt;scope&gt;runtime&lt;/scope&gt;
+        &lt;/dependencySet&gt;
+    &lt;/dependencySets&gt;
+&lt;/assembly&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.xml"
+    window.hexo_root = "/mu/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/mu/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
